@@ -2,8 +2,6 @@
 
 /**
  * main - causes an infinite loop
- * int main - short description
- * \\o/\n: avoiding loop
  * Return: 0
  */
 
