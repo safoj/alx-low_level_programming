@@ -1,37 +1,42 @@
-#include "mnain.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * alloc_grid - allocates a grid, make space and free space
- * @width: takes in width of grid
- * @height: height of grid
- * Return: grid with freed spaces
+ * alloc_grid -returns a pointer to a 2D array of ints
+ * @width: width
+ * @height: height
+ * Return: pointer to array
  */
-
 int **alloc_grid(int width, int height)
 {
-	int **grid;
-	int i, j;
-
-	if (width <= 0 || height <= 0)
-	{
+	int freenum;
+	int x;
+	int y;
+	int i;
+	int **arr;
+	if (width < 1 || height < 1)
 		return (NULL);
-	}
-	grid = malloc(sizeof(int *) * height);
-	if (grid == NULL)
-	{
-		return (NULL)
-	}
+	arr = malloc(sizeof(int *) * height);
+	if (arr == NULL)
+		return (NULL);
 	for (i = 0; i < height; i++)
 	{
-		grid[i] = malloc(sizeof(int) * width);
-		if (grid[i] == NULL)
+		arr[i] = malloc(sizeof(int) * width);
+		if (arr[i] == NULL)
 		{
-			free(grid[i]);
+	 for (freenum = 0; freenum < i; freenum++)
+			{
+				free(arr[freenum]);
+			}
+			free(arr);
+			return (NULL);
 		}
-		free(grid);
-		return (NULL);
 	}
-	for (i = 0; j < width; j++)
-		grid[i][j] = 0;
-	return (grid);
+	for (x = 0; x < height; x++)
+	{
+		for (y = 0; y < width; y++)
+		{
+			arr[x][y] = 0;
+		}
+	}
+	return (arr);
 }
