@@ -1,51 +1,55 @@
-#include "main.h"
-
+#include <stdio.h>
+#include <stdlib.h>
 /**
- * _strlen - count array
- * @s: array of elements
- * Return:1
- */
-
-int _string(char *s)
+  *_strlen - counts and returns string length
+  * @s: that's the string
+  *
+  * Return: the length
+  */
+int _strlen(char *s)
 {
-	unsigned int i;
-
-	i = 0;
-	while (s[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
+int counter = 0;
+if (!*s)
+        return (0);
+while (*s)
+{
+        counter++;
+        s++;
 }
-
+return (counter);
+}
 /**
- * str_concat - pointer to array
- * @s1: array one
- * @s2: array two
- * Return: always an array dinamic
+ * str_concat - concatenates two strings
+ * @s1: one string
+ * @s2: the other
+ * Return: pointer to cat string
  */
-
 char *str_concat(char *s1, char *s2)
 {
-	char *dst;
-	unsigned int i, j, size;
+        char *new;
+        unsigned int i;
+        unsigned int j;
 
-	if (s1 == NULL)
-		s1 = " ";
-	if (s2 == NULL)
-		s2 = " ";
-	size = (_strlen(s1) + _strlen(s2) + 1);
-	dst = (char *) malloc(size * sizeof(char));
-	if (dst == 0)
-	{
-		return (NULL);
-	}
-	for (i = 0; *(s1 + i) != '\0'; i++)
-		*(dst + i) = *(s1 + i);
-	for (j = 0; *(s2 + j) != '\0'; j++)
-	{
-		*(dst + i) = *(s2 + j);
-		i++;
-	}
-	return (dst);
+	 int total = 0;
+        if (!s1)
+                s1 = "";
+        if (!s2)
+                s2 = "";
+        total += _strlen(s1) + _strlen(s2);
+        new = malloc((total * sizeof(char)) + 1);
+        if (new == NULL)
+        {
+                return (NULL);
+        }
+        for (i = 0; s1[i]; i++)
+        {
+                new[i] = s1[i];
+        }
+        for (j = 0; s2[j]; j++, i++)
+        {
+                new[i] = s2[j];
+        }
+        new[i] = '\0';
+        return (new);
 }
+
