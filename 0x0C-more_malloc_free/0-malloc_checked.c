@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdlib.h>
 /**
  * malloc_checked - array to prints a string
  * @c: number of memory
@@ -8,11 +8,10 @@
 
 void *malloc_checked(unsigned int b)
 {
-	void *p;
+	void *mem = malloc(b);
 
-	p = malloc(b);
-	if (p == NULL)
-	{
-		return (p);
-	}
+	if (mem == NULL)
+		exit(98);
+
+	return (mem);
 }
